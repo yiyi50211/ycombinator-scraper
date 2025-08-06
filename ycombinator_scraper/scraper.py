@@ -428,3 +428,15 @@ class Scraper:
     def shutdown_driver(self) -> None:
         if self.driver is not None:
             self.driver.quit()
+
+
+if __name__ == "__main__":
+    scraper = Scraper()
+    scraped_data = scraper.scrape_multiple_companies(no_of_companies=10)  # 爬取 10 个公司（可修改）
+    
+    output_path = Path(__file__).parent / "jobs.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(scraped_data.model_dump(mode="json"), f, ensure_ascii=False, indent=2)
+    
+    scraper.shutdown_driver()
+    print(f"✅ jobs.json saved to {output_path}")
