@@ -22,7 +22,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from ycombinator_scraper.config import Settings
 from ycombinator_scraper.exceptions import InvalidURLException
 from ycombinator_scraper.models import CompanyData, FounderData, JobData, ScrapedData
-from ycombinator_scraper.selectors import (
+from ycombinator_scraper.yc_selectors import (
     COMPANY_DESCRIPTION_CLASS_ONE,
     COMPANY_DESCRIPTION_CLASS_TWO,
     COMPANY_IMAGE_CLASS,
