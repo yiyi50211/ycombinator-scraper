@@ -22,6 +22,9 @@ jobs:
         run: pip install -r requirements.txt  # ✅ 主目录下的依赖
 
       - name: Run scraper
+        env:
+          login_username: ${{ secrets.YIYI11 }}
+          login_password: ${{ secrets.yiyi50211 }}
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
           python ycombinator_scraper/scraper.py --output ycombinator_scraper/jobs.json
