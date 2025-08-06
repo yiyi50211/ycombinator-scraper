@@ -2,6 +2,7 @@ click==8.1.7
 beautifulsoup4==4.12.3
 loguru==0.7.2
 pandas==1.5.3
+numpy==1.23.5
 pathlib==1.0.1
 pydantic==2.5.3
 pydantic-settings==2.1.0
