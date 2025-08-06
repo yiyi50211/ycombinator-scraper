@@ -24,7 +24,7 @@ jobs:
       - name: Run scraper
         run: |
           cd scraper
-          python scraper.py --output jobs.json
+          python ycombinator-scraper/scraper.py --output jobs.json
 
       - name: Send to n8n webhook
         run: |
