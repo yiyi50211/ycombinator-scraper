@@ -23,12 +23,12 @@ jobs:
 
       - name: Run scraper
         run: |
-          cd scraper
-          python ycombinator-scraper/scraper.py --output jobs.json
+          cd ycombinator-scraper
+          python scraper.py --output jobs.json
 
       - name: Send to n8n webhook
         run: |
-          cd scraper
+          cd ycombinator-scraper
           curl -X POST https://darrickxue.app.n8n.cloud/webhook-test/54d03a17-c07e-47a0-972c-79f2f7306119 \
           -H "Content-Type: application/json" \
           --data @jobs.json
