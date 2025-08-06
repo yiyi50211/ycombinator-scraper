@@ -19,16 +19,18 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt  # ✅ 主目录下的依赖
 
       - name: Run scraper
         run: |
-          cd ycombinator-scraper
+          cd ycombinator_scraper
           python scraper.py --output jobs.json
+          echo "✅ Scraper finished"
+          ls -lh jobs.json
 
       - name: Send to n8n webhook
         run: |
-          cd ycombinator-scraper
+          cd ycombinator_scraper
           curl -X POST https://darrickxue.app.n8n.cloud/webhook-test/54d03a17-c07e-47a0-972c-79f2f7306119 \
           -H "Content-Type: application/json" \
           --data @jobs.json
