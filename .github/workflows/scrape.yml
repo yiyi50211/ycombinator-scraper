@@ -2,8 +2,8 @@ name: Scrape YC Jobs and Send to n8n
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天 UTC 02:00 执行一次
-  workflow_dispatch:      # 支持手动触发
+    - cron: '0 2 * * *'  # 每天 UTC 02:00
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -19,13 +19,16 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r scraper/requirements.txt
 
       - name: Run scraper
-        run: python scraper.py --output jobs.json
+        run: |
+          cd scraper
+          python scraper.py --output jobs.json
 
       - name: Send to n8n webhook
         run: |
+          cd scraper
           curl -X POST https://darrickxue.app.n8n.cloud/webhook-test/54d03a17-c07e-47a0-972c-79f2f7306119 \
           -H "Content-Type: application/json" \
           --data @jobs.json
